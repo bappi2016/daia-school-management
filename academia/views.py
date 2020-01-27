@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView,DetailView,TemplateView
 from django.shortcuts import get_object_or_404
-
+from blog.models import Blog
 from .models import Classes,Teacher
 
 
@@ -9,6 +9,13 @@ from .models import Classes,Teacher
 class ClassListView(ListView):
     model = Classes
     template_name = 'home/index.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["recent_blog"] = Blog.objects.order_by('pub_date')[:3]
+        return context
+    
 
 
 class ClassGridView(ListView):

@@ -96,7 +96,7 @@
                                             </ul>
                                         </li>
                                         <li class="drop"><a href="shop-grid.html">Shop</a> </li>
-                                        <li class="drop"><a href="blog-grid.html">Blog</a></li>
+                                        <li class="drop"><a href="{% url 'blog_list' %}">Blog</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
@@ -534,13 +534,13 @@
 						<div class="gallery wow fadeInUp">
 							<div class="gallery__thumb">
 								<a href="#">
-									<img src="images/gallery/gallery-1/6.jpg" alt="gallery images">
+									<img src="{% static 'images/gallery/gallery-1/6.jpg' %}" alt="gallery images">
 								</a>
 							</div>
 							<div class="gallery__hover__inner">
 								<div class="gallery__hover__action">
 									<ul class="gallery__zoom">
-										<li><a href="images/gallery/big-img/6.jpg" data-lightbox="grportimg" data-title="My caption"><i class="fa fa-search"></i></a></li>
+										<li><a href="{% static 'images/gallery/big-img/6.jpg' %} " data-lightbox="grportimg" data-title="My caption"><i class="fa fa-search"></i></a></li>
 										<li><a href="gallery-details.html"><i class="fa fa-link"></i></a></li>
 									</ul>
 									<h4 class="gallery__title"><a href="#">Creating Funny Things</a></h4>
@@ -553,6 +553,8 @@
 			</div>
 		</section>
 		<!-- End Our Gallery Area -->
+
+
 		<!-- Start Blog Area -->
 		<section class="jnr__blog_area section-padding--lg bg-image--3">
 			<div class="container">
@@ -565,21 +567,23 @@
 					</div>
 				</div>
 				<div class="row blog__wrapper mt--40">
+
 					<!-- Start Single Blog -->
+					{% for blog in recent_blog %}
 					<div class="col-lg-4 col-md-6 col-sm-12 wow fadeInLeft">
 						<article class="blog">
 							<div class="blog__date">
-								<span>Date : 10th November, 2017</span>
+								<span>Date : {{blog.pub_date}}</span>
 							</div>
 							<div class="blog__thumb">
 								<a href="blog-details.html">
-									<img src="images/blog/md-img/1.jpg" alt="blog images">
+									<img src="{% static 'images/blog/md-img/1.jpg' %}" alt="blog images">
 								</a>
 							</div>
 							<div class="blog__inner">
-								<span>Children Blog : Post By Ariana</span>
-								<h4><a href="blog-details.html">Basic Knowledge About Drawing</a></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur ad modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+								<span>Children Blog<p> Post By : {{blog.author}}</p></span>
+								<h4><a href="{{blog.get_absolute_url}}">{{blog.blog_title}}</a></h4>
+								<p>{{ blog.blog_description |truncatewords:25 }}</p>
 								<ul class="blog__meta d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
 									<li><a href="#">Comments : 05</a></li>
 									<li><a href="#">Like : 07</a></li>
@@ -587,55 +591,10 @@
 							</div>
 						</article>
 					</div>
+					{% endfor %}
 					<!-- End Single Blog -->
-					<!-- Start Single Blog -->
-					<div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
-						<article class="blog">
-							<div class="blog__date">
-								<span>Date : 10th November, 2017</span>
-							</div>
-							<div class="blog__thumb">
-								<a href="blog-details.html">
-									<img src="images/blog/md-img/2.jpg" alt="blog images">
-								</a>
-							</div>
-							<div class="blog__inner">
-								<span>Children Blog : Post By Jonson</span>
-								<h4><a href="blog-details.html">Study Tour</a></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur ad modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-								<ul class="blog__meta d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-									<li><a href="#">Comments : 05</a></li>
-									<li><a href="#">Like : 07</a></li>
-								</ul>
-							</div>
-						</article>
 					</div>
-					<!-- End Single Blog -->
-					<!-- Start Single Blog -->
-					<div class="col-lg-4 col-md-6 col-sm-12 wow fadeInRight">
-						<article class="blog">
-							<div class="blog__date">
-								<span>Date : 10th November, 2017</span>
-							</div>
-							<div class="blog__thumb">
-								<a href="blog-details.html">
-									<img src="images/blog/md-img/3.jpg" alt="blog images">
-								</a>
-							</div>
-							<div class="blog__inner">
-								<span>Children Blog : Post By Michel Jack</span>
-								<h4><a href="blog-details.html">Childrens Day</a></h4>
-								<p>Lorem ipsum dolor sit amet, consectetur ad modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-								<ul class="blog__meta d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-									<li><a href="#">Comments : 05</a></li>
-									<li><a href="#">Like : 07</a></li>
-								</ul>
-							</div>
-						</article>
-					</div>
-					<!-- End Single Blog -->
 				</div>
-			</div>
 		</section>
 		<!-- End Blog Area -->
 		<!-- Start upcomming Area -->
@@ -654,7 +613,7 @@
 					<div class="col-lg-6 col-md-12 col-sm-12 wow fadeInLeft">
 						<div class="upcomming__event">
 							<div class="upcomming__thumb">
-								<img src="images/upcomming/1.png" alt="upcomming images">
+								<img src="{% static 'images/upcomming/1.png' %}" alt="upcomming images">
 							</div>
 							<div class="upcomming__inner">
 								<h6><a href="event-details.html">Todler Art Exhibition</a></h6>
@@ -666,7 +625,7 @@
 								</ul>
 							</div>
 							<div class="event__occur">
-								<img src="images/upcomming/shape/1.png" alt="shape images">
+								<img src="{% static 'images/upcomming/shape/1.png' %}" alt="shape images">
 								<div class="enent__pub">
 									<span class="time">21st </span>
 									<span class="bate">Dec,2017</span>
@@ -679,7 +638,7 @@
 					<div class="col-lg-6 col-md-12 col-sm-12 wow fadeInRight">
 						<div class="upcomming__event">
 							<div class="upcomming__thumb">
-								<img src="images/upcomming/2.png" alt="upcomming images">
+								<img src="{% static 'images/upcomming/2.png' %}" alt="upcomming images">
 							</div>
 							<div class="upcomming__inner">
 								<h6><a href="event-details.html">Childrens Day Celebration</a></h6>
@@ -691,7 +650,7 @@
 								</ul>
 							</div>
 							<div class="event__occur">
-								<img src="images/upcomming/shape/1.png" alt="shape images">
+								<img src="{% static 'images/upcomming/shape/1.png' %}" alt="shape images">
 								<div class="enent__pub">
 									<span class="time">21st </span>
 									<span class="bate">Dec,2017</span>
