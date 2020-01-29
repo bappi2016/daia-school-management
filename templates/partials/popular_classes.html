@@ -1,0 +1,10 @@
+<!-- Single Widget -->
+<div class="single__widget Popular__classes">
+        <h4>Popular Classes</h4>
+        <ul>
+            {% for classes in popular_classes  %}
+            <li><a href="{{classes.get_absolute_url}}">{{classes.class_name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- End Widget -->

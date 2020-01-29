@@ -1,32 +1,35 @@
 {% load static %}
+{% load humanize %}
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Blog Grid || Junior Child Care & Shop HTML5 Template</title>
+	<title>Event Grid || Junior Child Care & Shop HTML5 Template</title>
 	<meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicons -->
     
-	<!-- Favicons -->
 	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 	<link rel="apple-touch-icon" href="{% static 'images/icon.png' %} ">
     
 	<!-- Google font (font-family: 'Lobster', Open+Sans;) -->
 	<link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans" rel="stylesheet">
+    
 
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-	<link rel="stylesheet" href="{% static 'css/plugins.css' %}">
-	<link rel="stylesheet" href="{% static 'style.css' %}">
-
-	<!-- Cusom css -->
-   <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-
-	<!-- Modernizer js -->
-	<script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+		<!-- Stylesheets -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+        <!-- Cusom css -->
+       <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    
+        <!-- Modernizer js -->
+        <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    
 </head>
 <body>
 	<!--[if lte IE 9]>
@@ -55,11 +58,11 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="bradcaump__inner text-center">
-                                <h2 class="bradcaump-title">Blog Grid</h2>
+                                <h2 class="bradcaump-title">Enent Grid</h2>
                                 <nav class="bradcaump-inner">
                                   <a class="breadcrumb-item" href="index.html">Home</a>
                                   <span class="brd-separetor"><img src="{% static 'images/icons/brad.png' %}" alt="separator images"></span>
-                                  <span class="breadcrumb-item active">Blog Grid</span>
+                                  <span class="breadcrumb-item active">Enent Grid</span>
                                 </nav>
                             </div>
                         </div>
@@ -68,40 +71,41 @@
             </div>
         </div>
         <!-- End Bradcaump area -->
-
-		<!-- Start Blog Area -->
-		<section class="dcare__blog__area section-padding--lg bg--white">
+		<!-- Start Our Event Area -->
+		<div class="dcare__event__area bg--white section-padding--lg">
 			<div class="container">
-				<div class="row blog-page">
-                    {% for blog in blogs %}
-					<!-- Start Single Blog -->
+				<div class="row event-grid-page">
+					{% for event in events %}
+					<!-- Start Single Event -->
 					<div class="col-lg-4 col-md-6 col-sm-12">
-						<div class="blog__2">
-							<div class="blog__thumb">
-								<a href="{{blog.get_absolute_url}}">
-									<img src="{% static 'images/blog/bl-2/1.jpg' %}" alt="blog images">
+						<div class="dcare__event">
+							<div class="event__thumb">
+								<a href="{{event.get_absolute_url }}">
+									<img src="{% static 'images/event/mid-img-2/1.jpg' %}" alt="event images">
 								</a>
 							</div>
-							<div class="blog__inner">
-								<div class="blog__hover__inner">
-									<h2><a href="{{blog.get_absolute_url}}">{{blog.blog_title}}</a></h2>
-									<div class="bl__meta">
-										<p> Post By <span>{{blog.author}}</span> | On 
-                                             <span>{{ blog.pub_date }}</span></p>
+							<div class="event__content">
+								<div class="event__pub">
+									<div class="event__date">
+										<span class="date">{{event.eventsday|ordinal}}</span>
 									</div>
-									<div class="bl__details">
-										<p>{{blog.blog_description |truncatewords:15}}</p>
-									</div>
-									<div class="blog__btn">
-										<a class="bl__btn" href="{{blog.get_absolute_url}}">Read More</a>
-										<a class="bl__share__btn" href="#"><i class="fa fa-share-alt"></i></a>
-									</div>
+									<ul class="event__time">
+										<li>{{event.eventsmonth}}, <i class="fa fa-clock-o"></i>{{event.eventsyear}} | {{event.event_time}}</li>
+										<li><i class="fa fa-home"></i>{{event.event_organaization}}, {{event.event_location}}</li>
+									</ul>
 								</div>
+								<div class="event__inner">
+									<p><a href="{{event.get_absolute_url }}">{{event.event_title}}</a></p>
+								</div>
+								<ul class="event__btn">
+									<li><a href="#">Book Now</a></li>
+									<li><a href="{{event.get_absolute_url }}">Learn More</a></li>
+								</ul>
 							</div>
 						</div>
-                    </div>
-                    {% endfor %}
-                    <!-- End Single Blog -->
+					</div>
+					<!-- Start Single Event -->
+					{% endfor %}
 				</div>
 				<div class="row">
 					<div class="col-lg-12">
@@ -120,8 +124,8 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<!-- End Blog Area -->
+		</div>
+		<!-- End Our Event Area -->
 		<!-- Start Subscribe Area -->
 		<section class="bcare__subscribe bg-image--7 subscrive--2">
 			<div class="container">
@@ -155,8 +159,8 @@
 
 		<!-- Start Footer Area -->
 
-		{% include 'partials/footer.html' %}
-		<!-- End Footer Area -->
+        {% include 'partials/footer.html' %}
+        <!-- End Footer Area -->
 
         <!-- Cartbox -->
         <div class="cartbox-wrap">
@@ -230,7 +234,6 @@
             </div>
         </div>
         <!-- //Cartbox -->
-
 
         <!-- Register Form -->
         <div class="accountbox-wrapper">
@@ -314,6 +317,3 @@
 	<script src="{% static 'js/active.js' %}"></script>
 </body>
 </html>
-
-
-

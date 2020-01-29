@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import ListView,DetailView,TemplateView
+from django.views.generic import ListView,DetailView
+from django.views.generic.base import TemplateView
 from django.shortcuts import get_object_or_404
 from blog.models import Blog
 from .models import Classes,Teacher
+from events.models import Events
+import datetime
 
 
 # Create your views here.
@@ -14,6 +17,8 @@ class ClassListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["recent_blog"] = Blog.objects.order_by('pub_date')[:3]
+        context['upcoming_events'] = Events.objects.filter(event_day__gte=datetime.date.today())[:6]
+        print(context)
         return context
     
 
@@ -49,12 +54,22 @@ class ClassDetailView(DetailView): ## this context will bring the Class corrospo
         context['current_class_name'] = current_class
         context['assosiate_teacher'] = e.teacher
         context['related_classes'] = b.teachers.all().exclude(id=c)
+        context['popular_classes'] = Classes.objects.all()[:10]
+        recent_blog = Blog.objects.all().order_by('pub_date')
+        context['recent_blog'] = recent_blog[:3]
         # print(teachers,self.class_name,c,e,t,b,bb)
-        print(context)
         return context # return new or updated context
         
         
+class ContactView(TemplateView):
+    template_name = 'contact.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactView,self).get_context_data(**kwargs)
+        recent_blog = Blog.objects.all().order_by('pub_date')
+        context['recent_blog'] = recent_blog[:3]
         return context
+    
     
 
 

@@ -1,9 +1,35 @@
 {% load static %}
+{% load humanize %}
 <!doctype html>
 <html class="no-js" lang="zxx">
-<!-- Head -->
-{% include 'partials/_head.html' %}
-<!-- //Head -->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Event Details || Junior Child Care & Shop HTML5 Template</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Favicons -->
+
+	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+	<link rel="apple-touch-icon" href="{% static 'images/icon.png' %} ">
+
+	<!-- Google font (font-family: 'Lobster', Open+Sans;) -->
+	<link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+	<link rel="stylesheet" href="{% static 'style.css' %}">
+
+	<!-- Cusom css -->
+   <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+	<!-- Modernizer js -->
+	<script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+
+</head>
 <body>
 	<!--[if lte IE 9]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -25,16 +51,16 @@
         <!-- Start Bradcaump area -->
         <div class="ht__bradcaump__area">
             <div class="ht__bradcaump__container">
-            	<img src="{% static 'images/bg-png/6.png' %}" alt="bradcaump images">
+            	<img src="{%static 'images/bg-png/6.png' %}" alt="bradcaump images">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="bradcaump__inner text-center">
-                                <h2 class="bradcaump-title">class details</h2>
+                                <h2 class="bradcaump-title">Event Details</h2>
                                 <nav class="bradcaump-inner">
                                   <a class="breadcrumb-item" href="index.html">Home</a>
                                   <span class="brd-separetor"><img src="{% static 'images/icons/brad.png' %}" alt="separator images"></span>
-                                  <span class="breadcrumb-item active">class details</span>
+                                  <span class="breadcrumb-item active">Event Details</span>
                                 </nav>
                             </div>
                         </div>
@@ -42,180 +68,112 @@
                 </div>
             </div>
         </div>
-        <!-- End Bradcaump area -->
-        
-        <!-- Start Class Details -->
-        <section class="page-class-details bg--white section-padding--lg">
+		<!-- End Bradcaump area -->
+		
+        <!-- Start Event Details -->
+        <section class="page-event-details bg--white section-padding--lg">
         	<div class="container">
         		<div class="row">
         			<div class="col-lg-9">
-        				<div class="class__quality__desc">
+        				<div class="event-content-wrapper">
 
-        					<div class="class__thumb">
-        						<div class="courses__type d-flex justify-content-between">
-        							<ul class="d-flex">
-        								<li>Course Type : <span>{{class.course_type}}</span></li>
-        								<li>Age : <span>2-3 Years</span></li>
-        							</ul>
-        							<ul class="rating d-flex">
-        								<li><span class="ti-star"></span></li>
-        								<li><span class="ti-star"></span></li>
-        								<li><span class="ti-star"></span></li>
-        								<li><span class="ti-star"></span></li>
-        								<li><span class="ti-star"></span></li>
-        							</ul>
-        						</div>
-        						<div class="courses__images">
-        							<img src="{% static 'images/class/big-img/1.jpg' %}" alt="class images">
-        						</div>
-        						<ul class="courses__meta d-flex">
-        							<li class="prize">$50</li>
-        							<li><i class="fa fa-comment-o"></i>53</li>
-        							<li><i class="fa fa-user"></i>50</li>
-        						</ul>
+	        				<div class="event-section">
+	        					<div class="enent__thumb">
+	        						<img src="{% static 'images/event/big-img/1.jpg' %}" alt="big images">
+	        						<div class="box-timer">
+	<div class="countbox timer-grid">
+		<div  data-countdown=" {{ event.event_day|date:'Y/m/d' }}"></div>
+	</div>
+                                     </div>
+	        					</div>
+
+	        					<div class="event__inner">
+	        						<span><i class="fa fa-calendar"></i>{{event.eventsday}} {{event.eventsmonth}}, {{event.eventsyear}}</span>
+	        						<h4>{{event.event_title}}</h4>
+
+	        						<p>{{event.event_description}}</p>
+
+	        						<blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid funti labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud emco laboris.</blockquote>
+	        					</div>
         					</div>
-							<div class="class-details-inner">
-								<div class="courses__inner">
-									<h2>{{class.class_name}}</h2>
-									<ul>
-										<li>Available Seats : <span>{{class.available_seats}}</span></li>
-										<li>Class Duration :  <i class="fa fa-calendar"></i><span>{{class.class_duration}}</span></li>
-									</ul>
-									<p>{{class.class_description}}</p>
-								</div>
 
-                <div class="class__nav nav justify-content-between" role="tablist">
-                    
-                    <a class="nav-item nav-link" data-toggle="tab" href="#nav-view" role="tab">Over View</a>
-                    
-                    <a class="nav-item nav-link active" data-toggle="tab" href="#nav-teacher" role="tab">Teacher</a>
-                    
-                    <a class="nav-item nav-link" data-toggle="tab" href="#nav-review" role="tab">Review</a>
-                </div>
+	        				<div class="event-section">
+	        					<div class="event__advertise">
+	        						<ul>
+	        							<li>Duis aute irure dolor in reprehenderit in voluptat</li>
+	        							<li>Duis aute irure dolor in reprehenderit in voluptat</li>
+	        							<li>Duis aute irure dolor in reprehenderit in voluptat</li>
+	        							<li>Excepteur sint occaecat cupidatat non proident</li>
+	        							<li>dent, sunt in culpa qui officia des</li>
+	        							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sedd.</li>
+	        							<li>Lorem ipsum dolor sit amet, consectetur adipisicing eli, sed do eiusmod tempor incididunt ut labmagna. Ut enim ad minim veniam, quis nostrud exercitation ullamlaboris nisi ut aliquip ex ea commodo conse aute imure dolor in reprehenderit in voluptate velit esse cil Gajan Mante lew</li>
+	        						</ul>
+	        						<div class="addver__thumb">
+	        							<img src="{%static 'images/event/big-img/2.jpg' %}" alt="event images">
+	        						</div>
+	        					</div>
+	        					<p>Loxcepteur sint  occaecat cupidatat non prdent, suntw in culpa qui officia deserunt mollit aLorem ipsum dolor sit amet, cadipisicinelit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulaboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo </p>
+        					</div>
 
-	                        	<div class="class__tab__content--inner">
-	                        		<div class="class__view single-class-content tab-pane fade" id="nav-view" role="tablist">
-	                        			<h2>Course Description</h2>
-	                        			<p>{{class.course_description}}</p>
+	        				<div class="event-section">
+	        					<h2 class="event__information">EVENT DETAILS INFORMATION</h2>
+	        					<div class="event__location">
+	        						<ul>
+	        							<li><span class="ti-user"></span>{{event.event_manager}},{{event.event_managers_role}}  </li>
+	        							<li><span class="ti-location-pin"></span>{{event.event_organaization}}, {{event.event_location}}</li>
+	        							<li><span class="ti-time"></span>{{event.event_time}}</li>
+	        							<li><span class="ti-mobile"></span>Phone : {{event.contact_num}} </li>
+	        							<li><span class="ti-email"></span>Email : {{event.contact_email}},</li>
+	        							<li><span class="ti-dribbble"></span>http:// {{event.web_address}}</li>
+	        						</ul>
+	        						<div class="event_map_marker">
+	        							<div id="evnetmap"></div>
+	        						</div>
+	        					</div>
+        					</div>
 
-	                        			<blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid funti labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud emco laboris.</blockquote>
+        					<div class="event__share d-flex">
+        						<span>Share By:</span>
+        						<ul class="dacre__social__link--3 social-net-3 d-flex justify-content-start">
+									<li class="facebook"><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+									<li class="twitter"><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+									<li class="vimeo"><a target="_blank" href="https://www.vimeo.com/"><i class="fa fa-vimeo"></i></a></li>
+									<li class="pinterest"><a target="_blank" href="https://pinterest.com"><i class="fa fa-pinterest"></i></a></li>
+								</ul>
+        					</div>
 
-	                        			<ul class="class__related">
-	                        				<li><a href="#">Duis aute irure dolor in reprehenderit in voluptat</a></li>
-	                        				<li><a href="#">Duis aute irure dolor in reprehenderit in voluptat</a></li>
-	                        				<li><a href="#">Duis aute irure dolor in reprehenderit in voluptat</a></li>
-	                        				<li><a href="#">Duis aute irure dolor in reprehenderit in voluptat</a></li>
-	                        				<li><a href="#">Excepteur sint occaecat cupidatat non proident</a></li>
-	                        				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sedd.</a></li>
+        					<div class="upcoming__event mt--80">
+        						<h2>Upcoming Event</h2>
+        						<div class="row">
 
-	                        			</ul>
-										<div class="share__us">
-											<span>Share By</span>
-
-											<ul class="dacre__social__link d-flex justify-content-center">
-												<li class="facebook"><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
-												<li class="twitter"><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
-												<li class="vimeo"><a target="_blank" href="https://www.vimeo.com/"><i class="fa fa-vimeo"></i></a></li>
-												<li class="pinterest"><a target="_blank" href="https://pinterest.com"><i class="fa fa-pinterest"></i></a></li>
-											</ul>
-										</div>
-
-	                        		</div>
-
-									<div class="teacher__view single-class-content tab-pane fade show active" id="nav-teacher" role="tablist">
-
-	<!-- Start Dingle Teacher -->
-	
-	<div class="teacher">
-		<img src="{% static 'images/team/teacher/1.jpg' %}" alt="teacher">
-		<h2>{{assosiate_teacher}}</h2>
-		<span>{{assosiate_teacher.teachers_speciality}}</span>
-		<p>{{assosiate_teacher.teachers_description}}</p>
-	</div>
-    
-		<!-- End Dingle Teacher -->
-
-		</div>
-		<div class="class__review single-class-content tab-pane fade" id="nav-review" role="tablist">
-			<div class="classs__review__inner">
-                <h4>Add A review</h4>
-                    <p>Your E-mail Address Will not be published. Required field are marked *</p>
-                    <span>Your rating</span>
-                	<ul class="rating">
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        </ul>
-                        <form action="#">
-                        <div class="input__box">
-                            <span>Your Review *</span>
-                            <textarea name="message"></textarea>
-                            </div>
-                            <div class="input__box">
-                            <span>Name*</span>
-                            <input type="text">
-                            </div>
-                            <div class="input__box">
-                                <span>E-mail*</span>
-                                <input type="email">
-                            </div>
-                                <div class="submit__btn--2">
-                                    <a class="dcare__btn btn__org hover__theme" href="#">Submit Now</a>
-                                </div>
-                            </form>
-                            </div>
-                        </div>
-                    </div>
-				</div>
-				
-
-	<!-- Start Related Class -->
-	<div class="related__class__wrapper">
-		{% if related_classes %}
-		<h2 class="title">You may also like to see these Classes </h2>
-		{% endif %}
-		<div class="row">
-
-	{% for class in related_classes %}									
-	<!-- Start Single Classs -->
-	<div class="col-lg-4 col-md-6 col-sm-6 col-12">
-		<div class="related__classs">
-			<div class="calss__thumb">
-				<a href="class-details.html">
-					<img src="{% static 'images/class/related/1.jpg' %}" alt="class images">
-				</a>
-			</div>
-			<div class="class__details">
-				<h2><a href="class-details.html">{{class.class_name}}</a></h2>
-			</div>
-			<div class="class__hover__action">
-				<div class="classs__hover__inner">
-					<div class="courses__fee">
-						<span>50%</span>
+			{% for event in upcoming_events %}
+			<div class="col-lg-6">
+				<!-- Start Event -->
+				<div class="single__event d-flex">
+					<div class="event__thumb">
+						<a href="event-details.html">
+							<img src="{%static 'images/event/sm-img/1.jpg' %}" alt="event images">
+						</a>
+						<div class="event__hover__info">
+							<span>{{event.eventsday|ordinal}} {{event.eventsmonth}}</span>
+						</div>
 					</div>
-					<h2><a href="class-details.html">{{class.class_name}}</a></h2>
-					<ul>
-						<li>{{class.class_name}} : 0.8 - 2.5 Years</li>
-						<li>Class Size : {{class.available_seats}}</li>
-					</ul>
-					<div class="class__btn">
-						<a class="dcare__btn" href="#">Apply Now</a>
+					<div class="event__inner">
+						<h6><a href="event-details.html">{{event.event_title}}</a></h6>
+						<ul class="event__time__location">
+							<li><i class="fa fa-home"></i>{{event.event_organaization}}, {{event.event_location}}</li>
+							<li><i class="fa fa-clock-o"></i>{{event.event_time}}</li>
+						</ul>
 					</div>
 				</div>
+				<!-- End Event -->
 			</div>
-		</div>
-	</div>
-	<!-- End Single Classs -->
-	{% endfor %}
-
-	</div>
-</div>
-<!-- End Related Class -->
-
-	</div>
-</div>
+			{% endfor %}
+        						</div>
+        					</div>
+        					
+        				</div>
+        			</div>
         			<!-- Start Sidebar -->
         			<div class="col-lg-3">
         				<div class="sidebar__widgets sidebar--right">
@@ -250,10 +208,12 @@
         					</div>
 							<!-- End Widget -->
 							
-							<!-- Recent Posts -->
+
+							  <!-- Recent Posts -->
 							{% include 'partials/recent_posts.html' %}
 
 							<!-- // Recent Posts -->
+
         					
 
         					<!-- Single Widget -->
@@ -298,24 +258,22 @@
 
         						</ul>
         					</div>
-							<!-- End Widget -->
-							
+        					<!-- End Widget -->
 
-							<!-- Popular Classes -->
+        					<!-- Popular Classes -->
 
 							{% include 'partials/popular_classes.html' %}
 
 							<!-- //Popular Classes -->
 
-
         					<!-- Single Widget -->
         					<div class="single__widget instagram__feed">
 								<h4>Instagram Feed</h4>
 								<ul>
-									<li><a href="#"><img src="{% static 'images/blog/ins/1.jpg' %}" alt="instafeed images"></a></li>
-									<li><a href="#"><img src="{% static 'images/blog/ins/2.jpg' %}" alt="instafeed images"></a></li>
-									<li><a href="#"><img src="{% static 'images/blog/ins/3.jpg' %}" alt="instafeed images"></a></li>
-									<li><a href="#"><img src="{% static 'images/blog/ins/4.jpg' %}" alt="instafeed images"></a></li>
+									<li><a href="#"><img src="images/blog/ins/1.jpg" alt="instafeed images"></a></li>
+									<li><a href="#"><img src="images/blog/ins/2.jpg" alt="instafeed images"></a></li>
+									<li><a href="#"><img src="images/blog/ins/3.jpg" alt="instafeed images"></a></li>
+									<li><a href="#"><img src="images/blog/ins/4.jpg" alt="instafeed images"></a></li>
 								</ul>
         					</div>
         					<!-- End Widget -->
@@ -425,6 +383,7 @@
         {% include 'partials/footer.html' %}
         <!-- End Footer Area -->
 
+
         <!-- Cartbox -->
         <div class="cartbox-wrap">
             <div class="cartbox text-right">
@@ -435,7 +394,7 @@
                         <div class="cartbox__item">
                             <div class="cartbox__item__thumb">
                                 <a href="product-details.html">
-                                    <img src="{% static 'images/product/sm-pro/1.jpg' %}" alt="small thumbnail">
+                                    <img src="images/product/sm-pro/1.jpg" alt="small thumbnail">
                                 </a>
                             </div>
                             <div class="cartbox__item__content">
@@ -452,7 +411,7 @@
                         <div class="cartbox__item">
                             <div class="cartbox__item__thumb">
                                 <a href="product-details.html">
-                                    <img src="{% static 'images/product/sm-pro/2.jpg' %}" alt="small thumbnail">
+                                    <img src="images/product/sm-pro/2.jpg" alt="small thumbnail">
                                 </a>
                             </div>
                             <div class="cartbox__item__content">
@@ -468,7 +427,7 @@
                         <div class="cartbox__item">
                             <div class="cartbox__item__thumb">
                                 <a href="product-details.html">
-                                    <img src="{% static 'images/product/sm-pro/3.jpg' %}" alt="small thumbnail">
+                                    <img src="images/product/sm-pro/3.jpg" alt="small thumbnail">
                                 </a>
                             </div>
                             <div class="cartbox__item__content">
@@ -497,6 +456,7 @@
             </div>
         </div>
         <!-- //Cartbox -->
+
 
         <!-- Register Form -->
         <div class="accountbox-wrapper">
@@ -573,9 +533,162 @@
 	</div><!-- //Main wrapper -->
 
 	<!-- JS Files -->
+
 	<script src="{% static 'js/vendor/jquery-3.2.1.min.js' %}"></script>
 	<script src="{% static 'js/popper.min.js' %}"></script>
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	
+
+    <!-- Google Map js -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmGmeot5jcjdaJTvfCmQPfzeoG_pABeWo"></script>
+    <script>
+        // When the window has finished loading create our google map below
+        google.maps.event.addDomListener(window, 'load', init);
+
+        function init() {
+            // Basic options for a simple Google Map
+            // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+            var mapOptions = {
+                // How zoomed in you want the map to start at (always required)
+                zoom: 12,
+
+                scrollwheel: false,
+
+                // The latitude and longitude to center the map (always required)
+                center: new google.maps.LatLng(23.7286, 90.3854), // New York
+
+                // How you would like to style the map. 
+                // This is where you would paste any style found on Snazzy Maps.
+                 styles:
+				[
+
+    {
+        "featureType": "administrative",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "stylers": [
+            {
+                "color": "#84afa3"
+            },
+            {
+                "lightness": 52
+            }
+        ]
+    },
+    {
+        "stylers": [
+            {
+                "saturation": -17
+            },
+            {
+                "gamma": 0.36
+            }
+        ]
+    },
+    {
+        "featureType": "transit.line",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#3f518c"
+            }
+        ]
+    }
+				]
+            };
+
+            // Get the HTML DOM element that will contain your map 
+            // We are using a div with id="map" seen below in the <body>
+            var mapElement = document.getElementById('evnetmap');
+
+            // Create the Google Map using our element and options defined above
+            var map = new google.maps.Map(mapElement, mapOptions);
+
+            // Let's also add a marker while we're at it
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(23.7286, 90.3854),
+                map: map,
+                title: 'Dcare!',
+                icon: 'images/icons/map-2.png',
+                animation:google.maps.Animation.BOUNCE
+
+            });
+        }
+    </script>
+
+
 	<script src="{% static 'js/plugins.js' %}"></script>
 	<script src="{% static 'js/active.js' %}"></script>
 </body>

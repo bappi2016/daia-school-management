@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -48,7 +49,7 @@
 						<div class="col-md-7 col-lg-6 col-sm-12">
 							<div class="jun__header__top__left">
 								<ul class="top__address d-flex justify-content-start align-items-center flex-wrap flex-lg-nowrap flex-md-nowrap">
-									<li><i class="fa fa-envelope"></i><a href="#">junior@mail.com</a></li>
+									<li><i class="fa fa-envelope"></i><a href="#">daia@gmail.com</a></li>
 									<li><i class="fa fa-phone"></i><span>Contact Now :</span><a href="#">+003457289</a></li>
 								</ul>
 							</div>
@@ -65,6 +66,7 @@
 				</div>
 			</div>
 			<!-- End Header Top Area -->
+
 			<!-- Start Mainmenu Area -->
 			<div class="mainmenu__wrapper bg__cat--1 poss-relative header_top_line sticky__header">
 				<div class="container">
@@ -80,9 +82,9 @@
 							<div class="mainmenu__wrap">
 								<nav class="mainmenu__nav">
                                     <ul class="mainmenu">
-                                        <li class="drop"><a href="index.html">Home</a></li>
+                                        <li class="drop"><a href="{% url 'class_list'%}">Home</a></li>
                                         <li class="drop"><a href="{% url 'class_grid' %}">Class</a></li>
-                                        <li class="drop"><a href="event-grid.html">Event</a></li>
+                                        <li class="drop"><a href="{% url 'event_list' %}">Event</a></li>
                                         <li class="drop"><a href="#">Pages</a>
                                             <ul class="dropdown__menu">
                                                 <li><a href="about-us.html">about us</a></li>
@@ -97,7 +99,7 @@
                                         </li>
                                         <li class="drop"><a href="shop-grid.html">Shop</a> </li>
                                         <li class="drop"><a href="{% url 'blog_list' %}">Blog</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="{% url 'contact' %}">Contact</a></li>
                                     </ul>
                                 </nav>
 							</div>
@@ -124,6 +126,7 @@
 				</div>
 			</div>
 			<!-- End Mainmenu Area -->
+			
 		</header>
 		<!-- //Header -->
 		<!-- Strat Slider Area -->
@@ -597,6 +600,8 @@
 				</div>
 		</section>
 		<!-- End Blog Area -->
+
+
 		<!-- Start upcomming Area -->
 		<section class="junior__upcomming__area section-padding--lg bg--white">
 			<div class="container">
@@ -609,6 +614,7 @@
 					</div>
 				</div>
 				<div class="row upcomming__wrap mt--40">
+					{% for event in upcoming_events %}
 					<!-- Start Single Upcomming Event -->
 					<div class="col-lg-6 col-md-12 col-sm-12 wow fadeInLeft">
 						<div class="upcomming__event">
@@ -616,49 +622,28 @@
 								<img src="{% static 'images/upcomming/1.png' %}" alt="upcomming images">
 							</div>
 							<div class="upcomming__inner">
-								<h6><a href="event-details.html">Todler Art Exhibition</a></h6>
-								<p>Lor error sit volupta item accusantim doloremque laudantium, toe aperiam, eaque ipsa quae ab illoe invenveritatis et quasi architecto beatae viliquam quaerat voluptatem.</p>
+								<h6><a href="{{event.get_absolute_url }}">{{event.event_title}}</a></h6>
+								<p>{{event.event_description}}</p>
 								<ul class="event__time">
-									<li><i class="fa fa-home"></i>Childrens Club, Uttara, Dhaka</li>
-									<li><i class="fa fa-clock-o"></i>10.00 am to 1.00 pm</li>
-									<li><i class="fa fa-calendar"></i>30th Dec, 2017</li>
+									<li><i class="fa fa-home"></i>{{event.event_organaization}}, {{event.event_location}}</li>
+									<li><i class="fa fa-clock-o"></i>{{event.event_time}}</li>
+									<li><i class="fa fa-calendar"></i>{{event.eventsday|ordinal}} {{event.eventsmonth}}, {{event.eventsyear}}</li>
 								</ul>
 							</div>
 							<div class="event__occur">
 								<img src="{% static 'images/upcomming/shape/1.png' %}" alt="shape images">
 								<div class="enent__pub">
-									<span class="time">21st </span>
-									<span class="bate">Dec,2017</span>
+									<span class="time">
+								{{event.eventsday|ordinal}} </span>
+									<span class="bate">
+										{{event.eventsmonth}},{{event.eventsyear}}</span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- End Single Upcomming Event -->
-					<!-- Start Single Upcomming Event -->
-					<div class="col-lg-6 col-md-12 col-sm-12 wow fadeInRight">
-						<div class="upcomming__event">
-							<div class="upcomming__thumb">
-								<img src="{% static 'images/upcomming/2.png' %}" alt="upcomming images">
-							</div>
-							<div class="upcomming__inner">
-								<h6><a href="event-details.html">Childrens Day Celebration</a></h6>
-								<p>Lor error sit volupta item accusantim doloremque laudantium, toe aperiam, eaque ipsa quae ab illoe invenveritatis et quasi architecto beatae viliquam quaerat voluptatem.</p>
-								<ul class="event__time">
-									<li><i class="fa fa-home"></i>Childrens Club, Uttara, Dhaka</li>
-									<li><i class="fa fa-clock-o"></i>10.00 am to 1.00 pm</li>
-									<li><i class="fa fa-calendar"></i>30th Dec, 2017</li>
-								</ul>
-							</div>
-							<div class="event__occur">
-								<img src="{% static 'images/upcomming/shape/1.png' %}" alt="shape images">
-								<div class="enent__pub">
-									<span class="time">21st </span>
-									<span class="bate">Dec,2017</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Single Upcomming Event -->
+					{% endfor %}
+					
 				</div>
 			</div>
 		</section>
@@ -725,56 +710,12 @@
 							</div>
 						</div>
 						<!-- End Single Widget -->
-						<!-- Start Single Widget -->
-						<div class="col-lg-4 col-md-6 col-sm-12 sm-mt-40">
-							<div class="footer__widget">
-								<h4>Latest Blog</h4>
-								<div class="footer__innner">
-									<div class="ftr__latest__post">
-										<!-- Start Single -->
-										<div class="single__ftr__post d-flex">
-											<div class="ftr__post__thumb">
-												<a href="blog-details.html">
-													<img src="images/blog/post-img/2.jpg" alt="post images">
-												</a>
-											</div>
-											<div class="ftr__post__details">
-												<h6><a href="blog-details.html">Sports Day is near! so lets get ready soon</a></h6>
-												<span><i class="fa fa-calendar"></i>30th Dec, 2017</span>
-											</div>
-										</div>
-										<!-- End Single -->
-										<!-- Start Single -->
-										<div class="single__ftr__post d-flex">
-											<div class="ftr__post__thumb">
-												<a href="blog-details.html">
-													<img src="images/blog/post-img/3.jpg" alt="post images">
-												</a>
-											</div>
-											<div class="ftr__post__details">
-												<h6><a href="blog-details.html">Sports Day Celebration</a></h6>
-												<span><i class="fa fa-calendar"></i>21th Dec, 2017</span>
-											</div>
-										</div>
-										<!-- End Single -->
-										<!-- Start Single -->
-										<div class="single__ftr__post d-flex">
-											<div class="ftr__post__thumb">
-												<a href="blog-details.html">
-													<img src="images/blog/post-img/4.jpg" alt="post images">
-												</a>
-											</div>
-											<div class="ftr__post__details">
-												<h6><a href="blog-details.html">Sports Day Celebration</a></h6>
-												<span><i class="fa fa-calendar"></i>10th Dec, 2017</span>
-											</div>
-										</div>
-										<!-- End Single -->
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End Single Widget -->
+
+					<!-- Start Latest Blog Wedget -->
+
+						{% include 'partials/latest_blog.html' %}
+					<!-- End Latest Blog Wedget -->
+
 						<!-- Start Single Wedget -->
 						<div class="col-lg-2 col-md-6 col-sm-12 md-mt-40 sm-mt-40">
 							<div class="footer__widget">
@@ -833,10 +774,10 @@
 					</div>
 				</div>
 				<div class="ft__bottom__images--1 wow flipInX" data-wow-delay="0.6s">
-					<img src="images/banner/mid-img/ft.png" alt="footer images">
+					<img src="{%static 'images/banner/mid-img/ft.png' %}" alt="footer images">
 				</div>
 				<div class="ft__bottom__images--2 wow fadeInRight" data-wow-delay="0.6s">
-					<img src="images/banner/mid-img/ft-2.png" alt="footer images">
+					<img src="{%static 'images/banner/mid-img/ft-2.png' %}" alt="footer images">
 				</div>
 			</div>
 			<!-- .Start Footer Contact Area -->
@@ -850,8 +791,8 @@
 										<i class="fa fa-home"></i>
 									</div>
 									<div class="ft__contact__details">
-										<p>Uttara, Zamzam Tower</p>
-										<p>Road # 12, Sec #13, 5th Floor</p>
+										<p>Pabna,Darul Aman Campas </p>
+										<p>Lashkar Pur Pabna</p>
 									</div>
 								</div>
 								<div class="single__footer__address">
@@ -868,8 +809,8 @@
 										<i class="fa fa-envelope"></i>
 									</div>
 									<div class="ft__contact__details">
-										<p><a href="#">juniorhomeschool.@email.com</a></p>
-										<p><a href="#">Kidscareschool.@yahoo.com</a></p>
+										<p><a href="#">daia@gmail.com</a></p>
+										<p><a href="#">daia@yahoo.com</a></p>
 									</div>
 								</div>
 							</div>

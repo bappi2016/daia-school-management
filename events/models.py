@@ -36,6 +36,15 @@ class Events(models.Model):
 
     def __str__(self):
         return self.event_title
+
+    def eventsday(self):
+        return self.event_day.strftime("%d")
+
+    def eventsmonth(self):
+        return self.event_day.strftime("%B")
+    
+    def eventsyear(self):
+        return self.event_day.strftime("%Y")
     
 
     def get_absolute_url(self):

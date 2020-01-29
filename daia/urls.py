@@ -21,9 +21,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+
+    path('events/',include('events.urls')),
     path('admin/', admin.site.urls),
     path('',include('academia.urls')),
     path('',include('blog.urls')),
+    
 ]
 
 

@@ -12,6 +12,13 @@ class BlogGridView(ListView):
     ordering  = 'pub_date'
     paginate_by = 3
 
+    def get_context_data(self, **kwargs):
+        recent_blog = Blog.objects.all().order_by('pub_date')
+        context = super().get_context_data(**kwargs)
+        context['recent_blog'] = recent_blog[:3]
+        return context
+    
+
 
 
 
@@ -31,10 +38,10 @@ class BlogDetailView(DetailView):
 
         slug = self.kwargs['slug']
         recent_blog = Blog.objects.order_by('pub_date').exclude(slug=slug)
-
+        all_tag_list = BlogTag.objects.all()
         tag_list = current_blog.tags.all()
         context['three_tag_list'] = tag_list[:3]
-        context['all_tag_list'] = tag_list
+        context['all_tag_list'] = all_tag_list
         context['recent_blog'] = recent_blog[:3]
         print(recent_blog)
         return context

@@ -1,0 +1,18 @@
+{% load static %}
+{% load humanize %}
+<!-- Single Widget -->
+<div class="single__widget recent__post">
+        <h4>Recent Posts</h4>
+        <ul>
+            {% for post in recent_blog %}
+            <li>
+                <a href="blog-details.html"><img src="{% static 'images/blog/sm-img/1.jpg' %}" alt="post images"></a>
+                <div class="post__content">
+                    <h6><a href="{{post.get_absolute_url}}">{{post.blog_title}}</a></h6>
+                    <span class="date"><i class="fa fa-calendar"></i>{{post.pub_date}}</span>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- End Widget -->
