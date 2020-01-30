@@ -3,6 +3,7 @@ from django.views.generic import ListView,DetailView
 from django.views.generic.base import TemplateView
 from django.shortcuts import get_object_or_404
 from blog.models import Blog
+from photologue.models import Photo
 from .models import Classes,Teacher
 from events.models import Events
 import datetime
@@ -18,6 +19,7 @@ class ClassListView(ListView):
         context = super().get_context_data(**kwargs)
         context["recent_blog"] = Blog.objects.order_by('pub_date')[:3]
         context['upcoming_events'] = Events.objects.filter(event_day__gte=datetime.date.today())[:6]
+        context['photos'] = Photo.objects.all()[:6]
         print(context)
         return context
     
@@ -26,6 +28,13 @@ class ClassListView(ListView):
 class ClassGridView(ListView):
     model = Classes
     template_name = 'class_grid.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        recent_blog = Blog.objects.all().order_by('pub_date')
+        context['recent_blog'] = recent_blog[:3]
+        return context
+    
 
 
 class ClassDetailView(DetailView): ## this context will bring the Class corrospondint to that pk

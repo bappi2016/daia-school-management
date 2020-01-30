@@ -38,12 +38,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+
+    # ...other installed applications...
+    'photologue',
+    'sortedm2m',
 
     #my_apps
     'academia',
     'blog',
     'events',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -132,7 +141,10 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'static_in_venv')]
 
 STATIC_URL = '/static/'
 
+# Absolute filesystem path to the directory that will hole user-uploaded-files
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+#URL that handles the media served from MEDIA_ROOT , used for managin stored filed.
 MEDIA_URL = '/media/'
 
 

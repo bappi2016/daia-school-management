@@ -19,6 +19,13 @@ from django.conf.urls import include
 from academia import views
 from django.conf import settings
 from django.conf.urls.static import static
+from photologue.sitemaps import GallerySitemap, PhotoSitemap
+
+sitemaps = {
+
+            'photologue_galleries': GallerySitemap,
+            'photologue_photos': PhotoSitemap,
+            }
 
 urlpatterns = [
 
@@ -28,6 +35,12 @@ urlpatterns = [
     path('',include('blog.urls')),
     
 ]
+
+urlpatterns += [
+  
+    path('photologue/', include('photologue.urls', namespace='photologue')),
+]
+
 
 
 if settings.DEBUG:
